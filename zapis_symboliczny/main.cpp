@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 //o + *
 bool palindrom(string text)
@@ -13,6 +14,12 @@ bool palindrom(string text)
     }
     return true;
 }
+vector <string> tab(2000);
+
+bool kwadrat(int i, int j)
+{
+    //dokonczyc zeby sprawdzalo kwadrat w tym miejscu
+}
 
 int main()
 {
@@ -21,9 +28,16 @@ int main()
     for(int i=0;i<2000;i++)
     {
         wejscie>>we;
-        if(palindrom(we))
+        tab[i]=we;
+    }
+    for(int i=0;i<2000;i++)
+    {
+        for(int j=0;j<12;j++)
         {
-            cout<<we<<endl;
+            if(kwadrat(i,j))
+            {
+                //zrobic warunek dla znalezienia kwadratu
+            }
         }
     }
 
