@@ -1,11 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <string>
 #include <math.h>
 using namespace std;
 //o + *
 
-vector <string> tab(2000);
 
 int trojki(string ciong)
 {
@@ -29,27 +28,42 @@ int trojki(string ciong)
     return liczba;
 }
 
+string dziesiatki(int liczba)
+{
+    string ciong="";
+    while (liczba>0)
+    {
+        switch (liczba%3)
+        {
+        case 0:
+            ciong.insert(ciong.begin(),'o');
+            break;
+        case 1:
+            ciong.insert(ciong.begin(),'+');
+            break;
+        case 2:
+            ciong.insert(ciong.begin(),'*');
+            break;
+        }
+        liczba/=3;
+    }
+
+    return ciong;
+}
+
 int main()
 {
     fstream wejscie("symbole.txt");
-    string we,ciong,maksciong;
-    int liczba, maks=-1;
+    string we,trojk;
+    int dzies=0;
     for(int i=0;i<2000;i++)
     {
         wejscie>>we;
-        tab[i]=we;
+        dzies+=trojki(we);
     }
-    for(int i=0;i<2000;i++)
-    {
-        ciong=tab[i];
-        liczba=trojki(ciong);
-        if(liczba>maks)
-        {
-            maks=liczba;
-            maksciong=ciong;
-        }
-    }
-    cout<<maks<<" "<<maksciong;
+
+    cout<<dzies<<" "<<dziesiatki(dzies);
+
 
 
 }
