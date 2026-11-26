@@ -18,27 +18,41 @@ vector <string> tab(2000);
 
 bool kwadrat(int i, int j)
 {
-    //dokonczyc zeby sprawdzalo kwadrat w tym miejscu
+    char znak=tab[i][j];
+    for(int a=2;a>=0;a--)
+    {
+        for(int b=2;b>=0;b--)
+        {
+            if(znak!=tab[i-a][j-b])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 int main()
 {
     fstream wejscie("symbole.txt");
     string we;
+    int ile=0;
     for(int i=0;i<2000;i++)
     {
         wejscie>>we;
         tab[i]=we;
     }
-    for(int i=0;i<2000;i++)
+    for(int i=2;i<2000;i++)
     {
-        for(int j=0;j<12;j++)
+        for(int j=2;j<12;j++)
         {
             if(kwadrat(i,j))
             {
-                //zrobic warunek dla znalezienia kwadratu
+                cout<<i<<" "<<j<<endl;
+                ile++;
             }
         }
     }
+    cout<<"ile: "<<ile;
 
 }
