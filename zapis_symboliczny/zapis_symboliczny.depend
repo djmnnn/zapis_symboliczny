@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1795680743 source:c:\users\uczeñ16\desktop\programy\zapis_symboliczny\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

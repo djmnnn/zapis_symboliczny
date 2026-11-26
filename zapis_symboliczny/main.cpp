@@ -1,58 +1,55 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <math.h>
 using namespace std;
 //o + *
-bool palindrom(string text)
-{
-    for(int i=0;i<6;i++)
-    {
-        if(text[i]!=text[11-i])
-        {
-            return false;
-        }
-    }
-    return true;
-}
+
 vector <string> tab(2000);
 
-bool kwadrat(int i, int j)
+int trojki(string ciong)
 {
-    char znak=tab[i][j];
-    for(int a=2;a>=0;a--)
+    int cyfra,liczba=0;
+    for(int i=11;i>=0;i--)
     {
-        for(int b=2;b>=0;b--)
+        switch (ciong[i])
         {
-            if(znak!=tab[i-a][j-b])
-            {
-                return false;
-            }
+        case 'o':
+            cyfra=0;
+            break;
+        case '+':
+            cyfra=1;
+            break;
+        case '*':
+            cyfra=2;
+            break;
         }
+        liczba+=cyfra*pow(3,11-i);
     }
-    return true;
+    return liczba;
 }
 
 int main()
 {
     fstream wejscie("symbole.txt");
-    string we;
-    int ile=0;
+    string we,ciong,maksciong;
+    int liczba, maks=-1;
     for(int i=0;i<2000;i++)
     {
         wejscie>>we;
         tab[i]=we;
     }
-    for(int i=2;i<2000;i++)
+    for(int i=0;i<2000;i++)
     {
-        for(int j=2;j<12;j++)
+        ciong=tab[i];
+        liczba=trojki(ciong);
+        if(liczba>maks)
         {
-            if(kwadrat(i,j))
-            {
-                cout<<i<<" "<<j<<endl;
-                ile++;
-            }
+            maks=liczba;
+            maksciong=ciong;
         }
     }
-    cout<<"ile: "<<ile;
+    cout<<maks<<" "<<maksciong;
+
 
 }
